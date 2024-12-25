@@ -1,0 +1,37 @@
+body { 
+    background-color: #FFFFFF; 
+}
+
+.navbar { 
+    background: #960047; 
+}
+
+.navbar * { 
+    color: #FFFFFF;
+    font-weight: 620; 
+}
+
+.btn.btn-primary { 
+    background: linear-gradient(90deg, #9CC700 0%, #FFCB05 100%); 
+}
+
+.btn.btn-secondary { 
+    background: linear-gradient(90deg, #FFCB05 0%, #9CC700 100%); 
+}
+
+.fa-solid {
+    color: #960047;
+}
+
+.page-item.active .page-link {
+    background-color: #960047;
+    color: #FFFFFF;
+}
+
+td {
+    color: #202020;
+}
+
+th {
+    color: #960047;
+}

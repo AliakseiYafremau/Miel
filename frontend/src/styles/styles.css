@@ -1,0 +1,299 @@
+@font-face {
+    font-family: "PTSans";
+    src: url("/src/resource/font/PTsans/PTSans-Regular.ttf");
+}
+
+html, header, body {
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 3vw;
+    letter-spacing: 0;
+    line-height: 1;
+    color: var(--color-black);
+    --font-primary: "Verdana";
+    --font-secondary: "PTSans";
+    --color-primary: #960047;
+    --color-secondary-1: #9CC700;
+    --color-secondary-2: #01BEC2;
+    --color-secondary-3: #FF5E01;
+    --color-secondary-4: #991FA9;
+    --color-secondary-5: #FFCB05;
+    --color-secondary-6: #D50069;
+    --color-input: #B7507F;
+    --color-white: #FFF;
+    --color-white-70: #ffffff9a;
+    --color-white-40: #ffffff66;
+    --color-black: #000;
+    --color-black-10: #0000001a;
+    --color-black-5: #0000000d;
+    --color-gray: #656565;
+    --color-gray-1: #F2F1F1;
+    --color-red: #D03939;
+}
+
+#root {
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+    background-repeat: no-repeat;
+    background-size: 120%;
+    background-position-x: 10.4rem;
+    background-position-y: 1.2rem;
+}
+
+main {
+    z-index: 10;
+}
+
+div, p, label {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    line-height: 1.2;
+}
+
+label {
+    font-size: 1.5rem;
+    margin-bottom: .2rem;
+}
+
+a {
+    cursor: pointer;  
+    text-decoration: none;
+    color: var(--color-black);
+    font-size: 1.3rem;
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 100;
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 100;
+}
+
+h4 {
+    text-align: start;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-primary);
+}
+
+h5 {
+    text-align: start;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 200;
+    font-family: var(--font-primary);
+}
+
+input, select {
+    padding: 0;
+    margin: 0;
+    padding-block: 0;
+    padding-inline: 1rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    border: .1rem solid var(--color-black);
+    border-radius: 1rem;
+}
+
+header input, select, button {
+    border: 0 solid var(--color-black);
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 40rem var(--color-white) inset;
+}
+
+button {
+    height: 3rem;
+    font-size: 1.2rem;
+    font-family: var(--font-primary);
+    padding: 0;
+    margin: 0;
+    border: none;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: 700;   
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.flex-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mw0 {
+    max-height: 0;
+}
+
+.mh100{    
+    max-height: 100vh;
+}
+
+.rotate-svg-90 {
+    rotate: 90deg;
+}
+
+.rotate-svg-180 {
+    rotate: 180deg;
+}
+
+.rotate-svg-270 {
+    rotate: 270deg;
+}
+
+.bg-white {
+    background-color: var(--color-white);
+}
+
+.fill-white {
+    fill: var(--color-white);
+}
+
+.stroke-white {
+    stroke: var(--color-white);
+}
+
+.color-white {
+    color: var(--color-white);
+}
+
+
+.bg-black {
+    background-color: var(--color-black);
+}
+
+.fill-black {
+    fill: var(--color-black);
+}
+
+.color-black {
+    color: var(--color-black);
+}
+
+.stroke-black {
+    stroke: var(--color-black);
+}
+
+.bg-gray {
+    background-color: var(--color-gray);
+}
+
+.fill-gray {
+    fill: var(--color-gray);
+}
+
+.bg-primary {
+    background-color: var(--color-primary);
+}
+
+.fill-primary {
+    fill: var(--color-primary);
+}
+
+.stroke-primary {
+    stroke: var(--color-primary);
+}
+
+.bg-secondary-1 {
+    background-color: var(--color-secondary-1);
+}
+
+.fill-secondary-1 {
+    fill: var(--color-secondary-1);
+}
+
+.color-secondary-1 {
+    color: var(--color-secondary-1);
+}
+
+.bg-secondary-2 {
+    background-color: var(--color-secondary-2);
+}
+
+.fill-secondary-2 {
+    fill: var(--color-secondary-2);
+}
+
+.bg-secondary-3 {
+    background-color: var(--color-secondary-3);
+}
+
+.fill-secondary-3 {
+    fill: var(--color-secondary-3);
+}
+
+.bg-secondary-4 {
+    background-color: var(--color-secondary-4);
+}
+
+.fill-secondary-4 {
+    fill: var(--color-secondary-4);
+}
+
+.bg-secondary-5 {
+    background-color: var(--color-secondary-5);
+}
+
+.fill-secondary-5 {
+    fill: var(--color-secondary-5);
+}
+
+.bg-secondary-6 {
+    background-color: var(--color-secondary-6);
+}
+
+.fill-secondary-6 {
+    fill: var(--color-secondary-6);
+}
+
+.color-red {
+    color: var(--color-red);
+}
+
+.bg-input {    
+    background-color: var(--color-input);
+}
+
+.color-white-70 {
+    color: var(--color-white-70);
+}
+
+.fill-white-70 {
+    fill: var(--color-white-70);
+}
+
+.error {
+    border-color: var(--color-red);
+}
+
+@keyframes l0 {
+    from {
+        left: 100vw;
+    }
+    to {
+        left: 0;
+    }
+}

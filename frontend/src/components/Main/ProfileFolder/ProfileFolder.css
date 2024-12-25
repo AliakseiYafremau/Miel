@@ -1,0 +1,7 @@
+.profile-folder {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin: 2rem 1.8rem 8rem 1.8rem;
+
+}

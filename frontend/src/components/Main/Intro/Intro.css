@@ -1,0 +1,13 @@
+.intro {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-primary);
+    background-image: url("../../../resource/assets/intro.gif");
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 30%;
+    background-size: 25rem;
+    background-size: 100%;
+}

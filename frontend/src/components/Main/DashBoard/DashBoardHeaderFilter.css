@@ -1,0 +1,39 @@
+.dashboard-header-filter {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    background-color: var(--color-primary);
+    margin-top: -2rem;
+    padding: 1rem 1.5rem;
+    font-size: 0.8rem;
+    z-index: 100;
+}
+
+.dashboard-header-filter .dashboarg-header-filter-order {
+    background-color: var(--color-input);
+    width: 13.5rem;
+    color: var(--color);
+}
+
+.dashboarg-header-order-place {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.dashboarg-header-filter-infobox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 9rem;
+    padding: 0 1rem;
+    background: linear-gradient(to bottom right, var(--color-secondary-1) 0%, var(--color-secondary-5) 100%);
+}
+
+.dashboarg-header-filter-infobox p:first-child {
+    font-size: 1.8rem;
+    font-weight: 700;
+}

@@ -1,0 +1,137 @@
+.dashboarg-header {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.4rem;
+}
+
+.dashboarg-header-title {
+    display: flex;
+    align-items: center;
+    height: 6rem;
+    gap: .8rem;
+    padding-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.dashboarg-header-title svg {
+    height: 4.6rem;
+}
+
+.dashboarg-header-title h1 {
+    display: flex;
+    align-items: center;
+}
+
+.dashboarg-header-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.dashboarg-header-infobox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 7rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    align-items: center;
+    background: linear-gradient(to bottom right, var(--color-secondary-1) 0%, var(--color-secondary-5) 100%);
+    color: var(--color-black);
+}
+
+.dashboarg-header-infobox-count {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    font-size: 3.3rem;
+    font-weight: 900;
+    text-align: end;
+}
+
+.dashboarg-header-infobox-count svg {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.dashboarg-header-infobox-name {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.dashboarg-header-content {
+    display: flex;
+    gap: 1rem;
+}
+
+.dashboarg-header-arrowsvg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 3rem;
+}
+
+.dashboarg-header-filter {
+    display: grid;
+    width: calc(100% - 10rem);
+    grid-template-columns: 4rem calc(100% - 5rem);
+    grid-template-rows: 4rem 4rem;
+    column-gap:  1rem;
+    row-gap: 1rem;
+    gap: 1rem;
+    max-width: calc(100vw-10rem);
+}
+
+.dashboarg-header-filter input {
+    padding-inline: 4rem;
+    background-image: url("../../../resource/assets/search.svg");
+    background-repeat: no-repeat;
+    background-size: 1.5rem;
+    background-position-x: 1.5rem;
+    grid-column:1/3;
+    color: var(--color-white);
+}
+
+.dashboarg-header-filter input::placeholder {
+    color: var(--color-white-70);
+    font-size: 1.2rem;
+}
+
+.db-b-i {
+    height: 4rem;
+    border-radius: 1.6rem;
+    background-repeat: no-repeat;
+    background-position-y: center;
+}
+
+.dashboarg-header-filter-open {
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboarg-header-filter-open svg {
+    width: 2.2rem;
+}
+
+.dashboarg-header-filter-order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    text-align: start;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.dashboarg-header-filter-order svg {
+    width: 1.8rem;
+    height: 1.8rem;
+}

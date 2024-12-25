@@ -1,0 +1,25 @@
+.profile-folder-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7rem;
+    color: white;
+}
+
+.profile-folder-header div:first-child {
+    position: absolute;
+    top: 2.4rem;
+    left: 1.5rem;
+}
+
+.profile-folder-header svg {
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+.profile-folder-header h1 {
+    justify-self: stretch;
+    font-size: 1.7rem;
+    font-weight: 700;
+}

@@ -1,0 +1,125 @@
+.nav-container {
+    display: flex;  
+    position: fixed;
+    align-self: center;
+    left: 0;
+    right: 0;
+    bottom: 1rem;
+    align-items: end;
+    justify-content: center;
+    height: 6rem;
+    z-index: 100;
+}
+
+.nav-content{
+    display: flex;
+    justify-content: center;
+}
+
+.nav-button {
+    height: 3.2rem;
+    width: 26.4rem;
+    background-color: var(--color-primary);
+    border-radius: 1.6rem;
+    -webkit-mask: url("../../../resource/assets/mask2.svg") 0 0/5.4rem 5.4rem, linear-gradient(#fff,#fff);
+    -webkit-mask-position: 18.5% 96%;
+    -webkit-mask-composite: exclude;
+    -webkit-mask-repeat: no-repeat;
+    mask: url("../../../resource/assets/mask2.svg") 0 0/5.4rem 5.4rem, linear-gradient(#fff,#fff);
+    mask-position: 18.5% 96%; 
+    mask-composite: exclude;
+    mask-repeat: no-repeat;
+    transition: mask-position .5s;
+
+    animation-name: bg-color-anim;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+}
+
+@keyframes bg-color-anim {
+    from {background-color: var(--color-primary)}
+    to {background-color: var(--color-secondary-6)}
+}
+
+.right {
+    -webkit-mask-position: 81.5% 96%;
+    mask-position: 81.5% 96%;
+}
+
+.nav-ball-svg {
+    margin-top: 0.7rem;
+    width: 5.2rem;
+    height: 4.4rem;
+    z-index: 1;
+}
+
+.nav-ball-container {
+    position: absolute;
+    align-self: start;
+    margin-left: -13.2rem;
+    transition: margin-left .45s;
+}
+
+.left {
+    margin-left: 13.2rem;
+}
+
+.nav-button-ico-container {
+    position: absolute;
+    display: flex;
+    gap: 11.2rem;
+    height: 6rem;
+    align-self: end;
+}
+
+.nav-button-ico-co{
+    height: 100%;
+    z-index: 2;
+}
+
+.nav-button-ico {
+    width: 2rem;
+    height: 2rem;
+    transition: margin-top .5s, fill .5s;
+}
+
+.nav-button-ico-left {
+    margin-top: 1.6rem;
+    fill: var(--color-black);
+}
+
+.nav-button-ico-right {
+    margin-top: 3.4rem;
+    fill: var(--color-white);
+}
+
+.up {
+    margin-top: 1.6rem;
+    fill: var(--color-black);
+}
+
+.down {
+    margin-top: 3.4rem;
+    fill: var(--color-white);
+}
+
+.nav-hidden {
+    position: absolute;
+    display: flex;
+    height: 6rem;
+    z-index: 1000;
+}
+
+.nav-hidden-button {
+    width: 13.2rem;
+    height: 100%;
+    cursor: pointer;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none;
+}

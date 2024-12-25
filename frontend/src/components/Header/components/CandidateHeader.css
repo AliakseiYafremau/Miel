@@ -1,0 +1,52 @@
+.candidate-header {
+    margin: 3rem 0 2rem;
+}
+
+.candidate-header-backfav {
+    position: absolute;
+    top: 2rem;
+    display: flex;
+    width: calc(100% - 3rem);
+    justify-content: space-between;
+}
+
+.candidate-header-backfav svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.candidate-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.imgshadow {
+    position: absolute;
+    width: 7.75rem;
+    height: 7.75rem;
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--color-secondary-1) 0%, var(--color-secondary-5) 100%);
+    top: 1rem;
+    left: 7.6rem;
+}
+
+.candidate-header-content img {
+    width: 9.4rem;
+    height: 9.4rem;
+    border-radius: 50%;
+    border: .3rem solid var(--color-white);
+}
+
+.candidate-header-content-photocontainer {
+    z-index: 2;
+}
+
+.candidate-header-content-info {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+}
