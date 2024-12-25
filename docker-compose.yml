@@ -1,0 +1,42 @@
+services:
+  db:
+    image: "postgres:15"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    command: npm run start
+  
+  backend:
+    build: ./backend
+    command: >
+      bash -c '
+      while !</dev/tcp/db/5432; do sleep 1; done;
+      alembic upgrade head &&
+      uvicorn app.main:app --host 0.0.0.0
+      '
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+  
+volumes:
+  postgres_data:
