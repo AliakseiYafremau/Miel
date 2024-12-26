@@ -28,6 +28,7 @@ origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://poopsss-mielfrontreact-9087.twc1.net",
+    "http://5.22.217.204",
 ]
 
 # Добавляем CORS
