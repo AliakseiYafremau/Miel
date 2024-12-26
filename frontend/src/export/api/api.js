@@ -1,4 +1,4 @@
-const APIURL = "http://localhost/api/"
+const APIURL = "http://5.22.217.204/api/"
 // const APIURL = "https://backend-y9b6.onrender.com/"
 
 export async function post(path, body) 
