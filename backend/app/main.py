@@ -21,7 +21,7 @@ from app.utils.admin_panel import (
 )
 from app.utils.routers import register_routers
 
-app = FastAPI(debug=True)
+app = FastAPI(docs_url="/api/docs", openapi_url="/api/openapi.json", redoc_url=None)
 
 # CORS - порты, с которых можно обращаться
 origins = [
@@ -40,11 +40,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/api/static", StaticFiles(directory="static"), name="static")
 
 # Подключаем админку
 authentication_backend = AdminAuth(secret_key="...")
-admin = Admin(app=app, engine=engine, authentication_backend=authentication_backend)
+admin = Admin(app=app, base_url="/api/admin", engine=engine, authentication_backend=authentication_backend)
 
 admin.add_view(ManagerAdmin)
 admin.add_view(OfficeAdmin)
