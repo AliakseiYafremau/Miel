@@ -1,5 +1,5 @@
-// const APIURL = "http://localhost:8000/"
-const APIURL = "https://backend-y9b6.onrender.com/"
+const APIURL = "http://localhost/api/"
+// const APIURL = "https://backend-y9b6.onrender.com/"
 
 export async function post(path, body) 
 {
