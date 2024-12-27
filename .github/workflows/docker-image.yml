@@ -21,5 +21,14 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          whoami
-          ls -al
+          # Переходим в папку Miel
+          cd /root/Miel
+
+          # Обновляем проект на сервере
+          git pull origin main
+
+          # Останавливаем и удаляем старые контейнеры
+          docker compose down
+
+          # Собираем новые контейнеры
+          docker compose up -d --build
