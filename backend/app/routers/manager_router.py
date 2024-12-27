@@ -10,6 +10,7 @@ from app.crud.manager_crud import (
     read_candidates_by_manager_id,
     read_candidate_by_id,
 )
+from app.schemas import manager_schema
 from app.core.logging import logger
 from app.utils.authentication import get_current_user
 from app.schemas.manager_schema import sortBy
@@ -21,7 +22,7 @@ manager_router = APIRouter(
 )
 
 
-@manager_router.get("/")
+@manager_router.get("/", response_model=manager_schema.getManager)
 async def get_manager(
     current_user_id: Annotated[int, Depends(get_current_user)],
     session: Annotated[AsyncSession, Depends(get_session)],
@@ -36,7 +37,7 @@ async def get_manager(
     raise HTTPException(status_code=404, detail="Руководитель не найден")
 
 
-@manager_router.get("/get_candidates/")
+@manager_router.get("/get_candidates/", response_model=List[manager_schema.getCandidate])
 async def get_candidates_of_manager(
     current_user_id: Annotated[int, Depends(get_current_user)],
     session: Annotated[AsyncSession, Depends(get_session)],
@@ -47,7 +48,7 @@ async def get_candidates_of_manager(
     return candidates
 
 
-@manager_router.get("/get_available_candidates/")
+@manager_router.get("/get_available_candidates/", response_model=List[manager_schema.getCandidate])
 async def get_available_candidates(
     current_user_id: Annotated[int, Depends(get_current_user)],
     session: Annotated[AsyncSession, Depends(get_session)],
@@ -69,7 +70,7 @@ async def get_available_candidates(
     return candidates
 
 
-@manager_router.get("/get_candidate_by_id/")
+@manager_router.get("/get_candidate_by_id/", response_model=manager_schema.getCandidate)
 async def get_candidate_by_id(
     current_user_id: Annotated[int, Depends(get_current_user)],
     candidate_id: int,

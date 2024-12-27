@@ -79,8 +79,8 @@ class Candidate(BaseModel):
     objects = Column(Integer, default=0)
 
     managers = relationship("ManagerCandidate", back_populates="candidate")
-    courses = relationship("CandidateCourse", back_populates="candidate")
-    skills = relationship("CandidateSkill", back_populates="candidate")
+    courses = relationship("CandidateCourse", back_populates="candidate", lazy="joined")
+    skills = relationship("CandidateSkill", back_populates="candidate", lazy="joined")
 
     @property
     def full_photo_path(self):
@@ -163,7 +163,7 @@ class CandidateSkill(BaseModel):
     skill = relationship("Skill", back_populates="candidates", lazy="joined")
 
     def __repr__(self) -> str:
-        return f"{self.candidate.full_name}/{self.skill.name}"
+        return f"{self.candidate.full_name}"
 
 
 # Навыки
