@@ -9,7 +9,7 @@ from app.crud.statistics.candidate_crud import (
     read_invited_candidates,
 )
 from app.models.models import Manager, Office
-from app.utils.database.test_data import get_session
+from app.core.db import get_session
 
 
 async def read_all_offices_count(session: AsyncSession = Depends(get_session)):

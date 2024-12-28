@@ -15,7 +15,7 @@ class getOffice(BaseModel):
     # created_at: datetime
     # updated_at: datetime
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -28,7 +28,7 @@ class getCourse(BaseModel):
     # created_at: datetime
     # updated_at: datetime
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -41,7 +41,7 @@ class getSkill(BaseModel):
     # created_at: datetime
     # updated_at: datetime
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -54,7 +54,7 @@ class getCoursesOfCandidate(BaseModel):
     # created_at: datetime
     # updated_at: datetime
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -66,7 +66,7 @@ class getSkillsOfCandidate(BaseModel):
     # created_at: datetime
     # updated_at: datetime
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -92,7 +92,7 @@ class getCandidate(BaseModel):
     courses: List[getCoursesOfCandidate] = []
     skills: List[getSkillsOfCandidate] = []
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -110,7 +110,7 @@ class getCandidatesOfManager(BaseModel):
 
     candidate: getCandidate
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 
@@ -131,7 +131,7 @@ class getManager(BaseModel):
     office: getOffice
     candidates: List[getCandidatesOfManager] = []
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
 
 

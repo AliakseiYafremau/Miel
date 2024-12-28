@@ -7,7 +7,7 @@ from app.crud.statistics.candidate_crud import read_candidates_statistics
 from app.crud.statistics.office_crud import read_office_load
 
 from app.models.models import Manager
-from app.utils.database.test_data import get_session
+from app.core.db import get_session
 
 
 async def read_manager_by_id(

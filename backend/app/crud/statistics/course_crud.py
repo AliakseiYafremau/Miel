@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 
 from app.models.models import Course
-from app.utils.database.test_data import get_session
+from app.core.db import get_session
 
 
 async def read_course_by_id(

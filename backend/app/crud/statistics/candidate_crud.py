@@ -11,7 +11,7 @@ from app.models.models import (
     CandidateCourse,
     ManagerCandidate,
 )
-from app.utils.database.test_data import get_session
+from app.core.db import get_session
 
 
 async def read_candidate_count_filter_date(

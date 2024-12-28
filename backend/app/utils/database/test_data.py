@@ -16,11 +16,6 @@ from app.core.db import AsyncSessionFactory
 fake = Faker("ru_RU")
 
 
-# Создаем сессию вручную
-async def get_session() -> AsyncSession:
-    return AsyncSessionFactory()
-
-
 # Основная функция для заполнения базы данных
 async def populate_database(
     num_offices: int = 5,
@@ -31,7 +26,7 @@ async def populate_database(
     max_candidates_per_manager: int = 3,
     max_courses_per_candidate: int = 3,
 ):
-    session = await get_session()  # Получаем сессию вручную
+    session = AsyncSessionFactory()  # Получаем сессию вручную
     try:
         # Создаем офисы
         offices = []

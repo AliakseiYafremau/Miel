@@ -8,4 +8,5 @@ class getOffice(BaseModel):
     name: str
     location: str
 
-    model_config = {"from_attributes": True}
+    class ConfigDict:
+        from_attributes = True

@@ -50,3 +50,9 @@ python -m app.main
 - [Redoc](http://127.0.0.1:8000/redoc)
 
 - [OpenAPI](http://127.0.0.1:8000/openapi.json)
+
+### 8. Запуск тестов
+
+```bash
+pytest
+```

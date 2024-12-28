@@ -10,5 +10,5 @@ class getCandidate(BaseModel):
     quotas: int
     phone: str
 
-    class Config:
+    class ConfigDict:
         from_attributes = True
