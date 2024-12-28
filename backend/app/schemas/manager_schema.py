@@ -121,7 +121,7 @@ class getManager(BaseModel):
     full_name: str
     quotas: int
     email: str
-    photo: str
+    photo: str | None = "1.jpg" #TODO Сделать так, чтоб по умолчанию бралась дефолтная картинка
     office_id: int
     password: str
 

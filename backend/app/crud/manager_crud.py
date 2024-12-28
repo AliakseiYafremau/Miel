@@ -23,7 +23,7 @@ async def read_manager_by_id(
     session: Annotated[AsyncSession, Depends(get_session)],
 ):
     """Поиск руководителя по id"""
-    logger.debug("Поиск руководителя по id: %s", manager_id)
+    logger.debug(f"[yellow]read_manager_by_id[/] | Поиск руководителя по id({manager_id})")
 
     request = (
         select(Manager)
@@ -38,10 +38,9 @@ async def read_manager_by_id(
     manager = result.scalars().first()
 
     if manager:
-        logger.debug("Руководитель найден")
+        logger.debug(f"[yellow]read_manager_by_id[/] | Руководитель найден")
         return manager
-    logger.error("Руководитель не найден")
-
+    logger.error("[yellow]read_manager_by_id[/] | Руководитель не найден")
     return None
 
 
@@ -49,7 +48,7 @@ async def read_candidates_by_manager_id(
     manager_id: int, session: Annotated[AsyncSession, Depends(get_session)]
 ):
     """Получение кандидатов руководителя по id"""
-    logger.debug("Получение кандидатов руководителя по id: %s", manager_id)
+    logger.debug(f"[yellow]read_candidates_by_manager_id[/] | Получение кандидатов руководителя по id({manager_id})")
 
     request = (
         select(Candidate)
@@ -74,7 +73,7 @@ async def read_available_candidates(
     sort_by: str = None,
 ):
     """Получение доступных кандидатов"""
-    logger.debug("Получение доступных кандидатов")
+    logger.debug(f"[yellow]read_available_candidates[/] | Получение доступных кандидатов")
 
     request = select(Candidate).where(Candidate.is_hired == False)
     subquery = aliased(
@@ -98,14 +97,14 @@ async def read_available_candidates(
 
     # Фильтрация по возрасту
     if min_age:
-        logger.debug("Фильтрация по возрасту: %s", min_age)
+        logger.debug(f"[yellow]read_available_candidates[/] | Фильтрация по возрасту({min_age})")
 
         today = datetime.date.today()
         max_date = today.replace(year=today.year - min_age)
         request = request.where(Candidate.date_of_birth <= max_date)
 
     if max_age:
-        logger.debug("Фильтрация по возрасту: %s", max_age)
+        logger.debug(f"[yellow]read_available_candidates[/] | Фильтрация по возрасту({max_age})")
 
         today = datetime.date.today()
         min_date = today.replace(year=today.year - max_age)
@@ -113,7 +112,7 @@ async def read_available_candidates(
 
     # Фильтрация по курсам
     if courses:
-        logger.debug("Фильтрация по курсам: %s", courses)
+        logger.debug(f"[yellow]read_available_candidates[/] | Фильтрация по курсам({courses})")
 
         request = request.join(Candidate.courses).where(
             CandidateCourse.course_id.in_(courses)
@@ -121,11 +120,11 @@ async def read_available_candidates(
 
     # Сортировка
     if sort_by == sortBy.is_invited:
-        logger.debug("Сортировка по приглашенности")
+        logger.debug(f"[yellow]read_available_candidates[/] | Сортировка по приглашенности")
 
         request = request.order_by(ManagerCandidate.is_invited == True)
     elif sort_by == sortBy.is_free:
-        logger.debug("Сортировка по свободности")
+        logger.debug(f"[yellow]read_available_candidates[/] | Сортировка по свободности")
 
         request = request.order_by(ManagerCandidate.is_invited == False)
 
@@ -139,7 +138,7 @@ async def read_candidate_by_id(
     candidate_id: int, session: Annotated[AsyncSession, Depends(get_session)]
 ):
     """Поиск кандидата по id"""
-    logger.debug("Поиск кандидата по id: %s", candidate_id)
+    logger.debug(f"[yellow]read_candidate_by_id[/] | Поиск кандидата по id({candidate_id})")
 
     request = (
         select(Candidate)
@@ -152,8 +151,8 @@ async def read_candidate_by_id(
     candidate = result.scalars().first()
 
     if candidate:
-        logger.debug("Кандидат найден")
+        logger.debug(f"[yellow]read_candidate_by_id[/] | Кандидат найден")
         return candidate
-    logger.error("Кандидат не найден")
+    logger.error(f"[yellow]read_candidate_by_id[/] | Кандидат не найден")
 
     return None
