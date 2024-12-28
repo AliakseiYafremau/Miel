@@ -1,16 +1,14 @@
-from httpx import AsyncClient, ASGITransport
-import pytest
+from httpx import AsyncClient
 
-from app.tests.confest import get_test_session as session
-from app.tests.confest import app
-
-
-@pytest.fixture(scope="module")
-async def client():
-    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-        yield ac
+from app.models.models import Base
+from app.tests.conftest import test_engine
 
 
 async def test_docs(client: AsyncClient):
     response = await client.get("/api/docs")
     assert response.status_code == 200
+
+
+async def test_login(client: AsyncClient):
+    response = await client.post("/api/auth/login", data={"email": "scds", "password": "cdsc"})
+    assert response.status_code == 401

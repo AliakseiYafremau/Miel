@@ -1,6 +1,7 @@
 # Дополнительные настройки
 .ruff_cache/
 .env.docker
+*.db
 
 
 # Byte-compiled / optimized / DLL files

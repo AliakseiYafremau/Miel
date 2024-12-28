@@ -11,7 +11,7 @@ from app.models.models import Base
 from app.main import app
 
 
-test_db_url = "sqlite+aiosqlite:///test.db"
+test_db_url = "sqlite+aiosqlite:///./test.db"
 test_engine = create_async_engine(test_db_url, echo=True)
 
 TestAsyncSessionFactory = sessionmaker(
@@ -25,18 +25,22 @@ async def get_test_session() -> AsyncGenerator:
         yield session
 
 
-app.dependency_overrides[get_session] = get_test_session
-
-
-@pytest.fixture(scope="session", autouse=True)
-async def manage_database() -> None:
-    async with test_engine.begin() as conn:
+@pytest.fixture(scope="module", autouse=True)
+async def setup():
+    async with test_engine.connect() as conn:
         await conn.run_sync(Base.metadata.drop_all)
         await conn.run_sync(Base.metadata.create_all)
 
     yield
 
-    async with test_engine.begin() as conn:
+    async with test_engine.connect() as conn:
         await conn.run_sync(Base.metadata.drop_all)
 
 
+@pytest.fixture(scope="module")
+async def client():
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
+        yield ac
+
+
+app.dependency_overrides[get_session] = get_test_session
