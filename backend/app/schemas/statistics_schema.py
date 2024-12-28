@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Dict
+from typing import List
 
 
 class InvitationStatistics(BaseModel):
@@ -70,6 +70,7 @@ class ManagerStatistics(BaseModel):
 
 class StatisticsResponse(BaseModel):
     """Модель для основного ответа"""
+
     total_managers: int
     candidates_statistics: CandidatesStatistics
     managers_statistics: List[ManagerStatistics]

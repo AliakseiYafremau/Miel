@@ -27,7 +27,9 @@ async def check_quotas(current_user_id, session):
 async def create_invitation(current_user_id, session, candidate_id):
     manager = await read_manager_by_id(current_user_id, session)
     if not await check_obj_exists(current_user_id, candidate_id, session):
-        create_obj_invite = ManagerCandidate(candidate_id=candidate_id, done_by=current_user_id, is_invited=True)
+        create_obj_invite = ManagerCandidate(
+            candidate_id=candidate_id, done_by=current_user_id, is_invited=True
+        )
         manager.quotas = manager.quotas - 1
         session.add(create_obj_invite)
         await session.commit()
@@ -39,7 +41,7 @@ async def create_invitation(current_user_id, session, candidate_id):
         if obj.is_invited:
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
-                detail="The candidate was invited earlier by this user"
+                detail="The candidate was invited earlier by this user",
             )
         else:
             obj.is_invited = True

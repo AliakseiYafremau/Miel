@@ -1,6 +1,3 @@
-
-
-
 """
 
 storageF = FileSystemStorage(path="/static/file")

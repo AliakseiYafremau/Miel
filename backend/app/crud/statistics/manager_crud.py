@@ -2,16 +2,17 @@ from fastapi.params import Depends
 from sqlalchemy import func
 from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from urllib3 import request
 
 from app.crud.statistics.candidate_crud import read_candidates_statistics
-from app.crud.statistics.office_crud import read_office_load, read_office_by_manager_id
+from app.crud.statistics.office_crud import read_office_load
 
 from app.models.models import Manager
 from app.utils.database.test_data import get_session
 
 
-async def read_manager_by_id(manager_id: int, session: AsyncSession = Depends(get_session)):
+async def read_manager_by_id(
+    manager_id: int, session: AsyncSession = Depends(get_session)
+):
     """Получение руководителя по id"""
     request = select(Manager).where(Manager.id == manager_id)
     result = await session.execute(request)
@@ -40,16 +41,18 @@ async def read_managers_count(session: AsyncSession = Depends(get_session)):
     return None
 
 
-async def read_manager_statistics_by_id(manager_id: int, session: AsyncSession = Depends(get_session)):
+async def read_manager_statistics_by_id(
+    manager_id: int, session: AsyncSession = Depends(get_session)
+):
     """Получение статистики руководителя по id"""
     request = select(Manager).where(Manager.id == manager_id)
     result = await session.execute(request)
     manager = result.scalars().first()
     office_load = await read_office_load(manager.office_id, session)
     return {
-            "full_name": manager.full_name,
-            "quotas": manager.quotas,
-            "office": office_load,
+        "full_name": manager.full_name,
+        "quotas": manager.quotas,
+        "office": office_load,
     }
 
 

@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import date
 from typing import List
 from enum import Enum
 
@@ -141,10 +141,9 @@ class sortBy(str, Enum):
 
 
 class inviteCandidate(BaseModel):
-
     id: int
 
-class NotesManager(BaseModel):
 
+class NotesManager(BaseModel):
     id: int
     note: str

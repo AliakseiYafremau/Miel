@@ -20,4 +20,5 @@ class Settings(BaseSettings):
     API_PREFIX: str = "/api"
     SHOW_DOCS: bool = False
 
+
 settings = Settings()

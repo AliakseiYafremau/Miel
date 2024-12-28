@@ -1,11 +1,4 @@
 from starlette.requests import Request
-from app.models.models import (Manager, Office, Candidate,
-                               Course, CandidateCourse, ManagerCandidate,
-                               )
-from passlib.context import CryptContext
-from sqladmin import ModelView
-from sqladmin.authentication import AuthenticationBackend
-
 from app.models.models import (
     Manager,
     Office,
@@ -13,6 +6,14 @@ from app.models.models import (
     Course,
     CandidateCourse,
     ManagerCandidate,
+)
+from passlib.context import CryptContext
+from sqladmin import ModelView
+from sqladmin.authentication import AuthenticationBackend
+from sqladmin import Admin
+from app.utils.adjusment import add_prefix
+
+from app.models.models import (
     CandidateSkill,
     Skill,
 )
@@ -340,7 +341,15 @@ class SkillAdmin(ModelView, model=Skill):
     column_labels = {Skill.name: "Название", Skill.candidates: "Кандидаты"}
 
 
-def add_views(admin):
+def add_admin_panel(app, engine):
+    authentication_backend = AdminAuth(secret_key="...")
+    admin = Admin(
+        app=app,
+        base_url=add_prefix("/admin"),
+        engine=engine,
+        authentication_backend=authentication_backend,
+    )
+
     admin.add_view(ManagerAdmin)
     admin.add_view(OfficeAdmin)
     admin.add_view(CandidateAdmin)

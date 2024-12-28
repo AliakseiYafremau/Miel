@@ -1,34 +1,20 @@
 import uvicorn
 from fastapi import FastAPI
-from sqladmin import Admin
 
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
 from app.core.db import engine
 from app.core.logging import logger
-from app.core.config import settings
 from app.utils.adjusment import register_routers, add_prefix, get_docs_url
-from app.utils.admin_panel import (
-    AdminAuth,
-    ManagerAdmin,
-    OfficeAdmin,
-    CandidateAdmin,
-    CourseAdmin,
-    CandidateCourseAdmin,
-    ManagerCandidateAdmin,
-    CandidateSkillAdmin,
-    SkillAdmin,
-    add_views
-)
+from app.utils.admin_panel import add_admin_panel
 
 
 app = FastAPI(
-        docs_url=add_prefix("/docs"),
-        openapi_url=get_docs_url(show_docs=True),
-        redoc_url=None
-    )
+    docs_url=add_prefix("/docs"),
+    openapi_url=get_docs_url(show_docs=True),
+    redoc_url=None,
+)
 
 # CORS - порты, с которых можно обращаться
 origins = [
@@ -50,17 +36,7 @@ app.add_middleware(
 app.mount(add_prefix("/static"), StaticFiles(directory="static"), name="static")
 
 # Подключаем админку
-authentication_backend = AdminAuth(secret_key="...")
-admin = Admin(app=app, base_url=add_prefix("/admin"), engine=engine, authentication_backend=authentication_backend)
-
-admin.add_view(ManagerAdmin)
-admin.add_view(OfficeAdmin)
-admin.add_view(CandidateAdmin)
-admin.add_view(CourseAdmin)
-admin.add_view(CandidateCourseAdmin)
-admin.add_view(ManagerCandidateAdmin)
-admin.add_view(CandidateSkillAdmin)
-admin.add_view(SkillAdmin)
+add_admin_panel(app, engine)
 
 # Регистрируем роутеры
 register_routers(app)

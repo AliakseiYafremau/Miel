@@ -14,7 +14,9 @@ from app.models.models import (
 from app.utils.database.test_data import get_session
 
 
-async def read_candidate_count_filter_date(date: date, session: AsyncSession = Depends(get_session)):
+async def read_candidate_count_filter_date(
+    date: date, session: AsyncSession = Depends(get_session)
+):
     """Получение количества кандидатов по интервалу дней"""
     request = (
         select(func.count()).select_from(Candidate).filter(Candidate.created_at >= date)
@@ -50,7 +52,9 @@ async def read_candidates_statistics(session: AsyncSession = Depends(get_session
     }
 
 
-async def read_available_candidates_count(is_hired: bool, session: AsyncSession = Depends(get_session)):
+async def read_available_candidates_count(
+    is_hired: bool, session: AsyncSession = Depends(get_session)
+):
     """Получение количества доступных/приглашенных кандидатов"""
     request = (
         select(func.count())

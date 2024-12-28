@@ -37,7 +37,9 @@ async def get_manager(
     raise HTTPException(status_code=404, detail="Руководитель не найден")
 
 
-@manager_router.get("/get_candidates/", response_model=List[manager_schema.getCandidate])
+@manager_router.get(
+    "/get_candidates/", response_model=List[manager_schema.getCandidate]
+)
 async def get_candidates_of_manager(
     current_user_id: Annotated[int, Depends(get_current_user)],
     session: Annotated[AsyncSession, Depends(get_session)],
@@ -48,7 +50,9 @@ async def get_candidates_of_manager(
     return candidates
 
 
-@manager_router.get("/get_available_candidates/", response_model=List[manager_schema.getCandidate])
+@manager_router.get(
+    "/get_available_candidates/", response_model=List[manager_schema.getCandidate]
+)
 async def get_available_candidates(
     current_user_id: Annotated[int, Depends(get_current_user)],
     session: Annotated[AsyncSession, Depends(get_session)],
