@@ -338,3 +338,14 @@ class SkillAdmin(ModelView, model=Skill):
     column_searchable_list = [Skill.name, Skill.candidates]
     form_columns = [Skill.name]
     column_labels = {Skill.name: "Название", Skill.candidates: "Кандидаты"}
+
+
+def add_views(admin):
+    admin.add_view(ManagerAdmin)
+    admin.add_view(OfficeAdmin)
+    admin.add_view(CandidateAdmin)
+    admin.add_view(CourseAdmin)
+    admin.add_view(CandidateCourseAdmin)
+    admin.add_view(ManagerCandidateAdmin)
+    admin.add_view(CandidateSkillAdmin)
+    admin.add_view(SkillAdmin)

@@ -17,5 +17,7 @@ class Settings(BaseSettings):
     ALGORITHM: str
     MINUT: int
 
+    API_PREFIX: str = "/api"
+    SHOW_DOCS: bool = False
 
 settings = Settings()

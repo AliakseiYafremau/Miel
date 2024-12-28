@@ -10,4 +10,5 @@ class getCandidate(BaseModel):
     quotas: int
     phone: str
 
-    model_config = {"from_attributes": True}
+    class Config:
+        from_attributes = True

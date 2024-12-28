@@ -8,6 +8,8 @@ from fastapi.staticfiles import StaticFiles
 
 from app.core.db import engine
 from app.core.logging import logger
+from app.core.config import settings
+from app.utils.adjusment import register_routers, add_prefix, get_docs_url
 from app.utils.admin_panel import (
     AdminAuth,
     ManagerAdmin,
@@ -18,10 +20,15 @@ from app.utils.admin_panel import (
     ManagerCandidateAdmin,
     CandidateSkillAdmin,
     SkillAdmin,
+    add_views
 )
-from app.utils.routers import register_routers
 
-app = FastAPI(docs_url="/api/docs", openapi_url="/api/openapi.json", redoc_url=None)
+
+app = FastAPI(
+        docs_url=add_prefix("/docs"),
+        openapi_url=get_docs_url(show_docs=True),
+        redoc_url=None
+    )
 
 # CORS - порты, с которых можно обращаться
 origins = [
@@ -40,11 +47,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.mount("/api/static", StaticFiles(directory="static"), name="static")
+app.mount(add_prefix("/static"), StaticFiles(directory="static"), name="static")
 
 # Подключаем админку
 authentication_backend = AdminAuth(secret_key="...")
-admin = Admin(app=app, base_url="/api/admin", engine=engine, authentication_backend=authentication_backend)
+admin = Admin(app=app, base_url=add_prefix("/admin"), engine=engine, authentication_backend=authentication_backend)
 
 admin.add_view(ManagerAdmin)
 admin.add_view(OfficeAdmin)
@@ -57,12 +64,6 @@ admin.add_view(SkillAdmin)
 
 # Регистрируем роутеры
 register_routers(app)
-
-
-# Перенаправляем на документацию
-@app.get("/")
-async def root():
-    return RedirectResponse(url="/docs")
 
 
 if __name__ == "__main__":
