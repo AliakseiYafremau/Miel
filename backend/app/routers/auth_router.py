@@ -16,7 +16,7 @@ auth_router = APIRouter(
 )
 
 
-@auth_router.post("/login/")
+@auth_router.post("/login")
 async def login(
     email: Annotated[str, Form(...)],
     password: Annotated[str, Form(...)],

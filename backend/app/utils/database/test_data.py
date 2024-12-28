@@ -1,4 +1,6 @@
 from faker import Faker
+from typing import AsyncGenerator
+from sqlalchemy.orm import sessionmaker
 import asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.models import (
@@ -18,6 +20,7 @@ fake = Faker("ru_RU")
 
 # Основная функция для заполнения базы данных
 async def populate_database(
+    session_factory: AsyncSession = AsyncSessionFactory, #TODO Не уверен в типе
     num_offices: int = 5,
     num_admins: int = 3,
     num_managers: int = 10,
@@ -26,7 +29,7 @@ async def populate_database(
     max_candidates_per_manager: int = 3,
     max_courses_per_candidate: int = 3,
 ):
-    session = AsyncSessionFactory()  # Получаем сессию вручную
+    session = session_factory()  # Получаем сессию вручную
     try:
         # Создаем офисы
         offices = []
