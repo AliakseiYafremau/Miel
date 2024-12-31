@@ -1,6 +1,4 @@
 from faker import Faker
-from typing import AsyncGenerator
-from sqlalchemy.orm import sessionmaker
 import asyncio
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.models import (
@@ -9,8 +7,10 @@ from app.models.models import (
     Candidate,
     Office,
     Course,
+    Skill,
     ManagerCandidate,
     CandidateCourse,
+    CandidateSkill,
 )
 from app.core.db import AsyncSessionFactory
 
@@ -20,14 +20,16 @@ fake = Faker("ru_RU")
 
 # Основная функция для заполнения базы данных
 async def populate_database(
-    session_factory: AsyncSession = AsyncSessionFactory, #TODO Не уверен в типе
+    session_factory: AsyncSession = AsyncSessionFactory,  # TODO Не уверен в типе
     num_offices: int = 5,
+    num_skills: int = 5,
     num_admins: int = 3,
     num_managers: int = 10,
     num_candidates: int = 50,
     num_courses: int = 10,
     max_candidates_per_manager: int = 3,
     max_courses_per_candidate: int = 3,
+    max_skills_per_candidate: int = 3,
 ):
     session = session_factory()  # Получаем сессию вручную
     try:
@@ -41,6 +43,17 @@ async def populate_database(
             session.add(office)
             offices.append(office)
         await session.commit()
+
+        # Создаем навыки
+        skills = []
+        for _ in range(num_skills):
+            skill = Skill(
+                name=fake.word() #TODO Заменить на правильный метод
+            )
+            session.add(skill)
+            skills.append(skill)
+        await session.commit()
+
 
         # Создаем администраторов
         for _ in range(num_admins):
@@ -88,14 +101,17 @@ async def populate_database(
         for candidate in candidates:
             num_managers_for_candidate = fake.random_int(
                 min=1, max=max_candidates_per_manager
-            )
+            ) #TODO Улучшить скрипт. Сделать так, чтоб была вероятность добавления кандидата
             for _ in range(num_managers_for_candidate):
                 manager_candidate = ManagerCandidate(
                     done_by=fake.random_int(
                         min=1, max=num_managers
                     ),  # Пример связи с руководителем
                     candidate_id=candidate.id,
+                    is_invited=fake.boolean(),
                     is_viewed=fake.boolean(),
+                    is_favorite=fake.boolean(),
+                    note=fake.sentence(),
                 )
                 session.add(manager_candidate)
         await session.commit()
@@ -121,6 +137,19 @@ async def populate_database(
                     course_id=fake.random_element([course.id for course in courses]),
                 )
                 session.add(candidate_course)
+        await session.commit()
+
+        # Связываем кандидатов с навыками (каждый кандидат может иметь нескольно навыков)
+        for skill in skills:
+            num_skills_for_candidate = fake.random_int(
+                min=1, max=max_skills_per_candidate
+            )
+            for _ in range(num_skills_for_candidate):
+                candidate_skill = CandidateSkill(
+                    candidate_id=candidate.id,
+                    skill_id=fake.random_element([skill.id for skill in skills]),
+                )
+                session.add(candidate_skill)
         await session.commit()
 
     finally:

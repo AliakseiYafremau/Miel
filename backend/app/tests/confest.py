@@ -7,7 +7,6 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 
 from app.core.db import get_session
-from app.models.models import Base
 from app.main import app
 
 
@@ -26,16 +25,7 @@ async def get_test_session() -> AsyncGenerator:
         yield session
 
 
-@pytest.fixture(scope="module", autouse=True)
-async def setup():
-    async with test_engine.connect() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
-
-    yield
-
-    async with test_engine.connect() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
+app.dependency_overrides[get_session] = get_test_session
 
 
 @pytest.fixture(scope="module")
@@ -44,6 +34,3 @@ async def client():
         transport=ASGITransport(app=app), base_url="http://test"
     ) as ac:
         yield ac
-
-
-app.dependency_overrides[get_session] = get_test_session

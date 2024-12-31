@@ -120,7 +120,9 @@ class ManagerCandidate(BaseModel):
     candidate = relationship("Candidate", back_populates="managers", lazy="joined")
 
     def __repr__(self) -> str:
-        return f"{self.candidate.full_name}"
+        if self.candidate:
+            return f"{self.candidate.full_name}"
+        return "None"
 
 
 # Курсы кандидата

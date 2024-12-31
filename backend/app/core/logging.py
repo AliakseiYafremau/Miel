@@ -15,11 +15,11 @@ class TerminalLogger:
         # Настройка обработчика для терминала с подсветкой
         rich_handler = RichHandler(markup=True)
         rich_handler.setLevel(logging.DEBUG)  # Логирование от DEBUG и выше
-        rich_handler.setFormatter(formatter) # Устанавливаем форматтер для обработчика
+        rich_handler.setFormatter(formatter)  # Устанавливаем форматтер для обработчика
 
         file_handler = logging.FileHandler("app.log")
-        file_handler.setLevel(logging.WARNING) # Логирование от WARNING и выше
-        file_handler.setFormatter(formatter) # Устанавливаем форматтер для обработчика
+        file_handler.setLevel(logging.WARNING)  # Логирование от WARNING и выше
+        file_handler.setFormatter(formatter)  # Устанавливаем форматтер для обработчика
 
         # Добавляем обработчик в логгер
         self._logger.addHandler(rich_handler)

@@ -22,7 +22,6 @@ from app.schemas.statistics_schema import (
     StatisticsResponse,
 )
 from app.schemas.statistics_schema import CandidatesStatistics
-from app.core.db import get_session
 
 statistics_router = APIRouter(prefix="/statistics", tags=["Работа со статистикой"])
 

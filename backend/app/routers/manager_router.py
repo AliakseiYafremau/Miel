@@ -62,7 +62,9 @@ async def get_available_candidates(
     min_age: int = None,
     max_age: int = None,
 ):
-    logger.debug(f"{settings.API_PREFIX}/get_available_candidates/ | Запрос на эндпоинт")
+    logger.debug(
+        f"{settings.API_PREFIX}/get_available_candidates/ | Запрос на эндпоинт"
+    )
 
     candidates = await read_available_candidates(
         session,
@@ -81,7 +83,9 @@ async def get_candidate_by_id(
     candidate_id: int,
     session: Annotated[AsyncSession, Depends(get_session)],
 ):
-    logger.debug(f"{settings.API_PREFIX}/get_available_candidates/ | Запрос на эндпоинт по id({candidate_id})")
+    logger.debug(
+        f"{settings.API_PREFIX}/get_available_candidates/ | Запрос на эндпоинт по id({candidate_id})"
+    )
 
     candidate = await read_candidate_by_id(candidate_id, session)
     if candidate:
