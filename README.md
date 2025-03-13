@@ -1,3 +1,5 @@
+# The code was written by the [MIEL TEAM 7](https://github.com/MIEL-team-7) organization
+
 # Miel
 
 Приложение для работы с базой кандидатов. Предоставление руководителям возможности приглашать кандидатов в свой офис, через администратора

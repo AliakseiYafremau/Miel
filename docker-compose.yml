@@ -22,15 +22,14 @@ services:
       - "8000:8000"
     depends_on:
       - db
-  
+
   nginx:
-    build:
-      context: ./nginx
+    build: ./nginx
     ports:
       - "80:80"
     depends_on:
       - frontend
       - backend
-  
+
 volumes:
   postgres_data:
